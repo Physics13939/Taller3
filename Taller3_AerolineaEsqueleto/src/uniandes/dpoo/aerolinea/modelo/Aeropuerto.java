@@ -13,6 +13,12 @@ import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
 public class Aeropuerto
 {
     // TODO completar
+	private String nombre;
+	private String codigo;
+	private String nombreCiudad;
+	private double latitud;
+	private double longitud;
+	private static Set<String> new HashSet<String>();
     
 
     /**
