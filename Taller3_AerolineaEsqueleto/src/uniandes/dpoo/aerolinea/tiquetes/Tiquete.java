@@ -3,7 +3,7 @@ package uniandes.dpoo.aerolinea.tiquetes;
 import uniandes.dpoo.aerolinea.modelo.Vuelo;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 
-public class Tiquete {
+public class Tiquete extends GeneradorTiquetes{
 	private String codigo;
 	private Vuelo vuelo;
 	private Cliente cliente;

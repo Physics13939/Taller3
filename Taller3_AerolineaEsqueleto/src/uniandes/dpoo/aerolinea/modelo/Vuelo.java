@@ -1,11 +1,9 @@
 package uniandes.dpoo.aerolinea.modelo;
 
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
-import uniandes.dpoo.aerolinea.tiquetes.GeneradorTiquetes;
-import uniandes.dpoo.aerolinea.modelo.Avion;
+import uniandes.dpoo.aerolinea.exceptions.VueloSobrevendidoException;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 import uniandes.dpoo.aerolinea.modelo.tarifas.CalculadoraTarifas;
-import uniandes.dpoo.aerolinea.exceptions.VueloSobrevendidoException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,17 +38,33 @@ public class Vuelo {
 		return tiquetes.values();
 	}
 	
-	public int venderTiquetes(Cliente cliente, CalculadoraTarifas calculadora, int cantidad) 
-			throws VueloSobrevendidoException{
-		int totalVendido = 0;
-		
+	public int venderTiquetes(Cliente cliente, CalculadoraTarifas calculadora, int cantidad) throws VueloSobrevendidoException
+	{
 		if (tiquetes.size() + cantidad > avion.getCapacidad()) {
-			throw new VueloSobrevendidoException(this);
+			throw new VueloSobrevendido("No hay cupos suficientes en el vuelo");
 		}
-		
-			
-	return 0;
-	}
+		int total = 0;
+	    for (int i = 0; i < cantidad; i++) {
+	        int tarifa = calculadora.calcularTarifa(this, cliente);
+	        
+	        String codigo = fecha + "-" + cliente.getTipoCliente() + "-" + i;
 	
-
+	        Tiquete tiquete = new Tiquete(codigo, this, cliente, tarifa);
+	
+	        tiquetes.put(codigo, tiquete);
+	
+	        total += tarifa;
+	    }
+	    return total;
+	}
+	public boolean equals(Object obj) {
+		if (this == obj) {
+	        return true; 
+	    }
+	    if (obj == null || getClass() != obj.getClass()) {
+	        return false; 
+	    }
+	    Vuelo other = (Vuelo) obj;
+	    return this.fecha.equals(other.fecha) && this.ruta.equals(other.ruta);
+	}
 }

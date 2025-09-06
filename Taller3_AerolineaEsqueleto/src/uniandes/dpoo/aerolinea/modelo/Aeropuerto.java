@@ -3,8 +3,6 @@ package uniandes.dpoo.aerolinea.modelo;
 import java.util.HashSet;
 import java.util.Set;
 
-import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
-
 /**
  * Esta clase encapsula la información sobre los aeropuertos e implementa algunas operaciones relacionadas con la ubicación geográfica de los aeropuertos.
  * 
@@ -12,13 +10,53 @@ import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
  */
 public class Aeropuerto
 {
-    // TODO completar
+    public Aeropuerto(String nombre, String codigo, String nombreCiudad, double latitud, double longitud) {
+		super();
+		this.nombre = nombre;
+		this.codigo = codigo;
+		this.nombreCiudad = nombreCiudad;
+		this.latitud = latitud;
+		this.longitud = longitud;
+	}
+    
+
+	// TODO completar
 	private String nombre;
 	private String codigo;
 	private String nombreCiudad;
 	private double latitud;
 	private double longitud;
-	private static Set<String> new HashSet<String>();
+	private static Set<String> codigosUtilizados = new HashSet<String>();
+	private static int RADIO_TERRESTRE = 6371;
+	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+
+
+	public String getNombreCiudad() {
+		return nombreCiudad;
+	}
+
+
+
+	public double getLatitud() {
+		return latitud;
+	}
+
+
+
+	public double getLongitud() {
+		return longitud;
+	}
     
 
     /**
