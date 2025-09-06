@@ -40,9 +40,6 @@ public class Vuelo {
 	
 	public int venderTiquetes(Cliente cliente, CalculadoraTarifas calculadora, int cantidad) throws VueloSobrevendidoException
 	{
-		if (tiquetes.size() + cantidad > avion.getCapacidad()) {
-			throw new VueloSobrevendido("No hay cupos suficientes en el vuelo");
-		}
 		int total = 0;
 	    for (int i = 0; i < cantidad; i++) {
 	        int tarifa = calculadora.calcularTarifa(this, cliente);
