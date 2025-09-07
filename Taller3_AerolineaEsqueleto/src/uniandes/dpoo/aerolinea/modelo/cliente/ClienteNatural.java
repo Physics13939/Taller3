@@ -5,7 +5,7 @@ public class ClienteNatural extends Cliente{
 		super();
 		this.nombre = nombre;
 	}
-	public String NATURAL = "Natural";
+	public static final String NATURAL = "Natural";
 	private String nombre;
 	
 	public String getIdentificador() {
