@@ -26,7 +26,19 @@ public class CentralPersistencia
      */
     public static IPersistenciaAerolinea getPersistenciaAerolinea( String tipoArchivo ) throws TipoInvalidoException
     {
-        // TODO implementar
+    	if (tipoArchivo == null) {
+            throw new TipoInvalidoException("El tipo de archivo no puede ser null");
+        }
+
+        switch (tipoArchivo.toLowerCase()) {
+            case "json":
+                return new PersistenciaAerolineaJson();
+            case "plaintext":
+            case "txt":
+                return new PersistenciaAerolineaPlaintext();
+            default:
+                throw new TipoInvalidoException("Tipo de archivo no soportado: " + tipoArchivo);
+        }
     }
 
     /**
